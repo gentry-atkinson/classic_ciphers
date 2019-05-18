@@ -50,7 +50,8 @@ int main (int argc, char** argv){
     case 2:
       if (strcmp(argv[1], "--help") == 0){
         cout << "Usage is: " << endl;
-        cout << "  vigenere filename key" << endl;
+        cout << "  vigenere enc filename key" << endl;
+        cout << "  vigenere dec filename key" << endl;
         cout << "  vigenere about" << endl;
         cout << "  vigenere --help" << endl;
       }
@@ -75,10 +76,11 @@ int main (int argc, char** argv){
       keyLength = strlen(key);
       break;
     default:
-      cout << "Usage is: " << endl;
-      cout << "  vigenere filename key" << endl;
-      cout << "  vigenere about" << endl;
-      cout << "  vigenere --help" << endl;
+    cout << "Usage is: " << endl;
+    cout << "  vigenere enc filename key" << endl;
+    cout << "  vigenere dec filename key" << endl;
+    cout << "  vigenere about" << endl;
+    cout << "  vigenere --help" << endl;
       return 1;
       break;
   }
