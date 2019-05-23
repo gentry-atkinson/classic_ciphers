@@ -59,17 +59,15 @@ int main (int argc, char** argv){
   int keyPosition = 0;
   char c;
   while (inFile.get(c)){
-    int shift = 0;
     if (isalpha(c)){
-      int c_int = c - 'A';
+      int shift = 0;
       c = toupper(c);
+      int c_int = c - 'A';
       if (enc)
         shift = int(key[keyPosition] - 'A');
       else
         shift = 26 - int(key[keyPosition] - 'A');
-      shift = 0;
       cout << char(((c_int + shift) % 26) + 'A');
-      //cout << shift + c_int << " ";
       keyPosition = (keyPosition + 1) % keyLength;
     }
     else{
