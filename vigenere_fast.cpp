@@ -1,8 +1,9 @@
 /*******************************
 *Author: Gentry Atkinson
 *Date: 17 May 2019
-*Desc: enciphers a textfile according to the Vigenere enciphers. Re-built to be
-*  more efficient but loses some faithfullness to the hand implementation.
+*Desc: enciphers a textfile according to the Vigenere cipher. Re-built to be
+*  more efficient but loses some faithfullness to the hand implementation, so
+*  not as fun.
 *******************************/
 
 #include <iostream>

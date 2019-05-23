@@ -1,7 +1,7 @@
 /*******************************
 *Author: Gentry Atkinson
 *Date: 17 May 2019
-*Desc: enciphers a textfile according to the Vigenere enciphers. Not uper efficient
+*Desc: enciphers a textfile according to the Vigenere cipher. Not uper efficient
 *  in space usage but meant to reflect the original application.
 *******************************/
 
