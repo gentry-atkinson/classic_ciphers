@@ -9,18 +9,18 @@
 #include <fstream>
 #include <string.h>
 #include <stdlib.h>
+#include <math.h>
 
 using namespace std;
 
 int main(int argc, char** argv){
-    int key = 7;
+    int key = 1;
     char *filename;
     switch(argc){
     case 2:
       if (strcmp(argv[1], "--help") == 0){
         cout << "Usage is: " << endl;
         cout << "  cylinder filename" << endl;
-        cout << "  cylinder filename key" << endl;
         cout << "  cylinder about" << endl;
         cout << "  cylinder --help" << endl;
         return 0;
@@ -35,16 +35,10 @@ int main(int argc, char** argv){
         return 0;
       }
       else {
-        cout << "Using default key value." << endl;
         filename = argv[1];
       }
       break;
-    case 3:
-      cout << "Key should be mutually prime with message length." << endl;
-      filename = argv[1];
-      key = atoi(argv[2]);
-      break;
-      default:
+    default:
       cout << "Usage is: " << endl;
       cout << "  cylinder filename" << endl;
       cout << "  cylinder filename key" << endl;
@@ -55,16 +49,32 @@ int main(int argc, char** argv){
     }
 
     ifstream inFile(filename);
-    string inText = " ";
+    string inText = "";
     char c;
     int messageLen = 0;
-    int curPos = 0;
     while (inFile.get(c)){
         inText += c;
         ++messageLen;
     }
-    do{
+
+    key = ceil(sqrt(messageLen));
+    int diff = (key*key) - messageLen;
+    while (diff > 0){
+        inText+=" ";
+        diff--;
+    }
+    int startPos = 0;
+    int curPos = 0;
+    //cout << "Message Length: " << messageLen << endl;
+    //cout << "Key: " << key << endl << endl;
+    //cout << inText << endl;
+    while(startPos < key){
         cout << inText.at(curPos);
-        curPos = (curPos + key) % messageLen;
-    }while(curPos != 0);
+        //cout << " " << startPos << " " << curPos << endl;
+        curPos += key;
+        if (curPos >= key*key){
+            startPos++;
+            curPos = startPos;
+        }
+    }
 }
