@@ -104,8 +104,11 @@ int main (int argc, char** argv){
     second = ' ';
     inFile.get(second);
     if(enc){
-        cout << key1[getRow(first)*5+getCol(second)] << " "
-            << key2[getRow(second)*5+getCol(first)] << " ";
+        //cout << key1[getRow(first)*5+getCol(second)] << " "
+        //    << key2[getRow(second)*5+getCol(first)] << " ";
+        cout << first << " " << second << endl;
+        cout << getRow(first) << " " << getCol(second) << endl;
+        cout << getRow(second) << " " << getCol(first) << endl << endl;
     }
     else{
 
@@ -116,11 +119,13 @@ int main (int argc, char** argv){
 }
 
 int getRow(char c){
+    c = toupper(c);
     int value = static_cast<int>(c) - static_cast<int>('A');
     if (value > 8) value--;
     return value/5;
 }
 int getCol(char c){
+    c = toupper(c);
     int value = static_cast<int>(c) - static_cast<int>('A');
     if (value > 8) value--;
     return value%5;
