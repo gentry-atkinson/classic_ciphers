@@ -70,9 +70,11 @@ int main (int argc, char** argv){
     case 3:
         if (strcmp(argv[1], "enc") == 0){
             enc = true;
+            cout << "Encipher file..." << endl;
         }
         else if (strcmp(argv[1], "dec") == 0){
             enc = false;
+            cout << "Decipher file..." << endl;
         }
         filename = argv[2];
         break;
@@ -99,22 +101,37 @@ int main (int argc, char** argv){
   for(int i = 0; i < 25; ++i){
     keyFile >> key2[i];
   }
-  while(!inFile.eof()){
-    inFile.get(first);
-    second = ' ';
-    inFile.get(second);
+  while(true){
+    do{
+        if(inFile.eof()){
+            return 0;
+        }
+        inFile.get(first);
+        //cout << first;
+    }while(!isalpha(first));
+    do{
+        if(inFile.eof()){
+            second='A';
+            break;
+        }
+        inFile.get(second);
+        //cout << second;
+    }while(!isalpha(second));
+    first = toupper(first);
+    second = toupper(second);
     if(enc){
         //cout << key1[getRow(first)*5+getCol(second)] << " "
         //    << key2[getRow(second)*5+getCol(first)] << " ";
-        cout << first << " " << second << endl;
-        cout << getRow(first) << " " << getCol(second) << endl;
-        cout << getRow(second) << " " << getCol(first) << endl << endl;
+        cout << first << second << "\t\t";
+        cout << key1[getRow(first)*5 + getCol(second)] << key2[getRow(second)*5 + getCol(first)];
+        cout << endl;
     }
     else{
 
     }
   }
-
+    outFile.close();
+    inFile.close();
   return 0;
 }
 
